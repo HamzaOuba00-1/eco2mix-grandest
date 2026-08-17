@@ -3,3 +3,6 @@ pandas==3.0.5
 pyarrow
 duckdb==1.4.1
 pytz==2026.3.post1
+scikit-learn==1.7.2
+holidays
+joblib
