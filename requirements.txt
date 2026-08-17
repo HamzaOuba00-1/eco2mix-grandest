@@ -6,3 +6,5 @@ pytz==2026.3.post1
 scikit-learn==1.7.2
 holidays
 joblib
+fastapi==0.121.1
+uvicorn[standard]==0.38.0
