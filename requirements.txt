@@ -1,10 +1,18 @@
-requests==2.34.2
-pandas==3.0.5
-pyarrow
+# Donnees
+requests==2.32.5
+pandas==2.3.3
+pyarrow==21.0.0
 duckdb==1.4.1
-pytz==2026.3.post1
+
+# Modele
 scikit-learn==1.7.2
-holidays
-joblib
+holidays==0.102
+joblib==1.5.3
+
+# Service
 fastapi==0.121.1
 uvicorn[standard]==0.38.0
+
+# Dashboard
+streamlit==1.51.0
+plotly==6.4.0
