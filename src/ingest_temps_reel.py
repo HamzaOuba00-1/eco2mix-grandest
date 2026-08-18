@@ -79,7 +79,8 @@ def transformer(df: pd.DataFrame) -> pd.DataFrame:
     horaire = df.set_index("date_heure")[MESURES].resample("1h").mean().round(2)
 
     maintenant = pd.Timestamp.now(tz="UTC")
-    horaire = horaire[horaire.index + pd.Timedelta(hours=1) <= maintenant]
+    fin_de_creneau = horaire.index.shift(1, freq="1h")
+    horaire = horaire[fin_de_creneau <= maintenant]
     horaire = horaire[horaire["consommation"].notna()]
     horaire["nature"] = "temps_reel"
     return horaire.reset_index()

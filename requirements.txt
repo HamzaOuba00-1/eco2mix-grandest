@@ -16,3 +16,7 @@ uvicorn[standard]==0.38.0
 # Dashboard
 streamlit==1.51.0
 plotly==6.4.0
+
+# Tests
+pytest==8.4.2
+httpx==0.28.1
