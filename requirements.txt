@@ -10,7 +10,7 @@ holidays==0.102
 joblib==1.5.3
 
 # Service
-fastapi==0.121.1
+fastapi>=0.139,<1.0
 uvicorn[standard]==0.38.0
 
 # Dashboard
@@ -20,3 +20,4 @@ plotly==6.4.0
 # Tests
 pytest==8.4.2
 httpx==0.28.1
+prefect==3.8.3

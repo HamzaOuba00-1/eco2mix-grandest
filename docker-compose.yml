@@ -34,15 +34,36 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  prefect-server:
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - prefect-data:/app/.prefect
+    environment:
+      PREFECT_HOME: /app/.prefect
+      PREFECT_SERVER_API_HOST: 0.0.0.0
+    command: prefect server start --host 0.0.0.0
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:4200/api/ready')"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 120s
+    restart: unless-stopped
+
   ingestion:
     build: .
     volumes:
       - ./data:/app/data
-    # Boucle simple : ingere, attend une heure, recommence.
-    # Sera remplace par Prefect a l'etape suivante.
-    command: >
-      sh -c "while true; do
-               python -m src.ingest_temps_reel || echo 'Echec ingestion';
-               sleep 3600;
-             done"
+    environment:
+      PREFECT_API_URL: http://prefect-server:4200/api
+    command: python -m src.flux --deploy
+    depends_on:
+      prefect-server:
+        condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  prefect-data:

@@ -16,8 +16,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./src/
 
 # Utilisateur non-root : un conteneur compromis n'a pas les droits admin
+# Tous les dossiers montes en volume doivent exister ET appartenir a
+# appuser : Docker cree les points de montage manquants en tant que root,
+# ce qui rend le volume inaccessible a l'utilisateur non-privilegie.
 RUN useradd --create-home appuser \
-    && mkdir -p /app/data /app/models \
+    && mkdir -p /app/data /app/models /app/.prefect \
     && chown -R appuser:appuser /app
 USER appuser
 
