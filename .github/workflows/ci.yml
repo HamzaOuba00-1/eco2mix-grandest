@@ -56,5 +56,4 @@ jobs:
           context: .
           push: false
           tags: eco2mix:ci
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          load: false
