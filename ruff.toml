@@ -1,0 +1,6 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "W", "I"]   # erreurs, imports inutilises, imports mal ordonnes
+ignore = ["E501"]               # longueur de ligne, deja geree par line-length

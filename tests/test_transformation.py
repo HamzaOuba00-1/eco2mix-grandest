@@ -1,6 +1,5 @@
 """Tests de la logique de transformation des donnees."""
 import pandas as pd
-import pytest
 
 from src.ingest_temps_reel import transformer
 
